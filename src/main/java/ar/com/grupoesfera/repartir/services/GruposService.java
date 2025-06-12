@@ -48,6 +48,13 @@ public class GruposService {
         if (Strings.isBlank(nuevoGrupo.getNombre())) {
             throw new GrupoInvalidoException(GrupoInvalidoException.CodigoError.NOMBRE_INCOMPLETO);
         }
+        List<Grupo> ListaGrupos =repository.findAll();
+        String nombreBuscado = nuevoGrupo.getNombre();
+        boolean existe = ListaGrupos.stream()
+                .anyMatch(g -> nombreBuscado.equals(g.getNombre()));
+        if (existe) {
+            throw new GrupoInvalidoException(CodigoError.GRUPO_DUPLICAD0);
+        }
     }
 
     public Grupo recuperar(Long id) {

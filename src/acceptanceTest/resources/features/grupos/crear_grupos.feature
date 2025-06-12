@@ -35,3 +35,11 @@ Característica: Crear Grupo para repartir gastos
       Cuando el usuario crea un grupo
       Entonces debería visualiza dentro del listado el grupo creado con total '$  0,00'
 
+  Regla: Los grupos no pueden tener el mismo nombre
+
+    Escenario: No puedo crear mas de dos grupos con el mismo nombre
+      Dado que el usuario inició Repartir
+      Y creo el grupo con el nombre 'Viernes de pizza'
+      Cuando el usuario intenta crear otro grupo con el nombre 'Viernes de pizza'
+      Entonces no debería crear el grupo con el nombre duplicado
+      Y debería ser informado que ya existe un grupo con ese nombre

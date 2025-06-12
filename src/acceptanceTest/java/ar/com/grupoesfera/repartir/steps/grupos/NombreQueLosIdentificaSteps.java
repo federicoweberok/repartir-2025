@@ -88,4 +88,25 @@ public class NombreQueLosIdentificaSteps extends CucumberSteps {
         shouldShowAnError("No se puede guardar");
     }
 
+    @Y("creo el grupo con el nombre {string}")
+    public void creoElGrupoConElNombre(String nombre) {
+        elUsuarioCreaUnGrupoIndicandoElNombre(nombre);
+    }
+
+    @Cuando("el usuario intenta crear otro grupo con el nombre {string}")
+    public void elUsuarioIntentaCrearOtroGrupoConElNombre(String nombre) {
+        elUsuarioCreaUnGrupoIndicandoElNombre(nombre);
+    }
+
+    @Entonces("no debería crear el grupo con el nombre duplicado")
+    public void noDeberiaCrearElGrupoConElNombreDuplicado() {
+        // Verificamos que no se haya agregado un nuevo grupo con ese nombre
+        List<WebElement> grupos = driver.findElements(By.xpath("//td[contains(text(),'" + nombreIndicado + "')]"));
+        assertThat(grupos.size()).isLessThanOrEqualTo(1); // solo debe haber uno
+    }
+
+    @Y("debería ser informado que ya existe un grupo con ese nombre")
+    public void deberiaSerInformadoQueYaExisteUnGrupoConEseNombre() {
+        shouldShowAnError("No puede haber dos grupos con el mismo nombre");
+    }
 }
