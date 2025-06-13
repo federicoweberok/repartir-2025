@@ -35,4 +35,19 @@ public class MiembrosConNombresIguales extends FastCucumberSteps {
         assertThat(grupo.estaFormado()).isTrue();
     }
 
+    @Cuando("ingresa los miembros {string}, {string}, {string} y {string}")
+    public void ingresaCuatroMiembrosConElNombre(String nombre1, String nombre2, String nombre3, String nombre4) {
+        miembros.add(nombre1);
+        miembros.add(nombre2);
+        miembros.add(nombre3);
+        miembros.add(nombre4);
+        grupo.setMiembros(miembros);
+    }
+
+    @Entonces("el grupo deberia crearse incluyendo a todos los miembros")
+    public void elGrupoDeberiaCrearseIncluyendoATodosLosMiembros() {
+        assertThat(grupo.getMiembros().size()).isEqualTo(4);
+        assertThat(grupo.estaFormado()).isTrue();
+    }
+
 }

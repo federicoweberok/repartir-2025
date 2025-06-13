@@ -11,6 +11,11 @@ Característica: Crear Grupo para repartir gastos
   Regla: Los grupos pueden incluir miembros con nombres iguales
 
     Escenario: Crear un grupo con dos personas que tienen el mismo nombre
-        Dado que el usuario quiere crear un grupo
-        Cuando ingresa dos miembros con el nombre "Juan"
-        Entonces el grupo deberia crearse con ambos miembros
+      Dado que el usuario quiere crear un grupo
+      Cuando ingresa dos miembros con el nombre "Juan"
+      Entonces el grupo deberia crearse con ambos miembros
+
+    Escenario: Crear un grupo con múltiples miembros, incluyendo nombres iguales
+      Dado que el usuario quiere crear un grupo
+      Cuando ingresa los miembros "Juan", "Ana", "Juan" y "Pedro"
+      Entonces el grupo deberia crearse incluyendo a todos los miembros
